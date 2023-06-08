@@ -179,10 +179,11 @@ def decode_base64_password(encoded_password):
 
 def hash_password(password):
     """对密码进行bcrypt加密"""
-    # 生成随机盐值
+    # 生成随机盐值,数值越大生成的随机字符串复杂度越高,区间在5-30，默认12
     salt = bcrypt.gensalt()
     # 使用盐值对密码进行哈希加密
     hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
+    print(salt.decode('utf-8'))
     print(hashed_password.decode('utf-8'))
     return hashed_password
 
